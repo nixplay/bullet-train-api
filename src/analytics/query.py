@@ -26,12 +26,14 @@ def get_events_for_organisation(organisation):
 
     :return: number of events as integer
     """
-    ga_response = get_service().data().ga().get(
-        ids=settings.GA_TABLE_ID,
-        start_date='30daysAgo',
-        end_date='today',
-        metrics='ga:totalEvents',
-        dimensions='ga:date',
-        filters=f'ga:eventCategory=={organisation.get_unique_slug()}').execute()
-
-    return int(ga_response['totalsForAllResults']['ga:totalEvents'])
+    if True:
+        return 0
+    else:
+        ga_response = get_service().data().ga().get(
+            ids=settings.GA_TABLE_ID,
+            start_date='30daysAgo',
+            end_date='today',
+            metrics='ga:totalEvents',
+            dimensions='ga:date',
+            filters=f'ga:eventCategory=={organisation.get_unique_slug()}').execute()
+        return int(ga_response['totalsForAllResults']['ga:totalEvents'])
