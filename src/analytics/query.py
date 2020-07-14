@@ -26,7 +26,7 @@ def get_events_for_organisation(organisation):
 
     :return: number of events as integer
     """
-    if True:
+    if not settings.GA_TABLE_ID:
         return 0
     else:
         ga_response = get_service().data().ga().get(
