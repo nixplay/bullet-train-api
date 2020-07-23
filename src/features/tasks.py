@@ -3,6 +3,7 @@ from threading import Thread
 from webhooks.webhooks import (
     call_environment_webhooks,
     WebhookEventType,
+    WebhookType,
     call_organisation_webhooks,
     _call_webhooks,
 )
