@@ -4,6 +4,7 @@ from webhooks.webhooks import (
     call_environment_webhooks,
     WebhookEventType,
     call_organisation_webhooks,
+    _call_webhooks,
 )
 
 date_format = "%Y-%m-%dT%H:%M:%S.%fZ"
@@ -34,18 +35,17 @@ def trigger_feature_state_change_webhooks(instance):
             history_instance.prev_record.instance, previous=True
         )
 
+    env_webhooks = list(instance.environment.webhooks.filter(enabled=True))
+    org_webhooks = list(instance.organisation.webhooks.filter(enabled=True))
+
     Thread(
-        target=call_environment_webhooks,
-        args=(instance.environment, data, WebhookEventType.FLAG_UPDATED),
+        target=_call_webhooks,
+        args=(env_webhooks, data, WebhookEventType.FLAG_UPDATED, WebhookType.ENVIRONMENT),
     ).start()
 
     Thread(
-        target=call_organisation_webhooks,
-        args=(
-            instance.environment.project.organisation,
-            data,
-            WebhookEventType.FLAG_UPDATED,
-        ),
+        target=_call_webhooks,
+        args=(org_webhooks, data, WebhookEventType.FLAG_UPDATED, WebhookType.ORGANISATION),
     ).start()
 
 

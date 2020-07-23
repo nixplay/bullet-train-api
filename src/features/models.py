@@ -250,7 +250,7 @@ class FeatureState(models.Model):
             defaults=self._get_defaults()
         )
         # TODO: move this to an async call using celery or django-rq
-        # trigger_feature_state_change_webhooks(self)
+        trigger_feature_state_change_webhooks(self)
 
     def _get_defaults(self):
         if self.feature_segment:
