@@ -36,7 +36,7 @@ def trigger_feature_state_change_webhooks(instance):
         )
 
     env_webhooks = list(instance.environment.webhooks.filter(enabled=True))
-    org_webhooks = list(instance.organisation.webhooks.filter(enabled=True))
+    org_webhooks = list(instance.environment.project.organisation.webhooks.filter(enabled=True))
 
     Thread(
         target=_call_webhooks,
