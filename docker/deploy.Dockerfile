@@ -14,5 +14,6 @@ WORKDIR /usr/src
 COPY src/ ./
 COPY Pipfile* ./
 RUN pipenv install --deploy
+RUN pipenv run sfx-py-trace-bootstrap
 
 EXPOSE 8000
