@@ -6,6 +6,8 @@ It exposes the WSGI callable as a module-level variable named ``application``.
 For more information on this file, see
 https://docs.djangoproject.com/en/1.9/howto/deployment/wsgi/
 """
+from signalfx_tracing import create_tracer, auto_instrument
+auto_instrument(create_tracer())
 
 import os
 
