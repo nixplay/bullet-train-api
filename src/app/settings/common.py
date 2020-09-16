@@ -139,6 +139,7 @@ REST_AUTH_SERIALIZERS = {
 }
 
 MIDDLEWARE = [
+    'django_opentracing.OpenTracingMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
