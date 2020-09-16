@@ -107,6 +107,7 @@ INSTALLED_APPS = [
     # health check plugins
     'health_check',
     'health_check.db',
+    'signalfx_tracing'
 ]
 
 if GOOGLE_ANALYTICS_KEY or INFLUXDB_TOKEN:
